@@ -3,22 +3,22 @@ services:
   - docker
 
 before_install:
-  - docker build -t dmcchy/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t dembyabella/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true dmcchy/react-test npm test
+  - docker run -e CI=true dembyabella/react-test npm test
 
 # Build these images and push to dockerhub
 # Log in to the docker CLI
 after_success:
-  - docker build -t dmcchy/multi-client ./client
-  - docker build -t dmcchy/multi-nginx ./nginx
-  - docker build -t dmcchy/multi-server ./server
-  - docker build -t dmcchy/multi-worker ./worker
+  - docker build -t dembyabella/multi-client ./client
+  - docker build -t dembyabella/multi-nginx ./nginx
+  - docker build -t dembyabella/multi-server ./server
+  - docker build -t dembyabella/multi-worker ./worker
   # Emit password put it in login
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them into docker hub
-  - docker push dmcchy/multi-client
-  - docker push dmcchy/multi-nginx
-  - docker push dmcchy/multi-server
-  - docker push dmcchy/multi-worker
+  - docker push dembyabella/multi-client
+  - docker push dembyabella/multi-nginx
+  - docker push dembyabella/multi-server
+  - docker push dembyabella/multi-worker
