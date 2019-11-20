@@ -5,7 +5,8 @@
       "name": "client",
       "image": "dembyabella/multi-client",
       "hostname": "client",
-      "essential": false
+      "essential": false,
+      "MemoryReservation": 64
     },
     {
       "name": "server",
