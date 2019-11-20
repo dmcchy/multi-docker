@@ -26,6 +26,7 @@ after_success:
   - docker push dembyabella/multi-worker
 
 deploy:
+  edge: true
   provider: elasticbeanstalk
   region: us-east-1
   app: multi-docker
