@@ -8,6 +8,8 @@ before_install:
 script:
   - docker run -e CI=true dembyabella/react-test npm test
 
+
+
 # Build these images and push to dockerhub
 # Log in to the docker CLI
 after_success:
@@ -22,3 +24,15 @@ after_success:
   - docker push dembyabella/multi-nginx
   - docker push dembyabella/multi-server
   - docker push dembyabella/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-1-248184876991
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
